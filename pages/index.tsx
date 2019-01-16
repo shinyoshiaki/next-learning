@@ -8,7 +8,7 @@ interface StatelessPage<P = {}> extends React.SFC<P> {
   getInitialProps?: (ctx: any) => Promise<P>;
 }
 
-const Index: StatelessPage<{ shows: any[] }> = props => (
+const Index: StatelessPage<{ shows?: any[] }> = props => (
   <Layout>
     <h1>Batman TV Shows</h1>
     <ul>
@@ -28,7 +28,6 @@ Index.getInitialProps = async () => {
     .get("https://api.tvmaze.com/search/shows?q=batman")
     .catch(console.log);
   if (!res) return;
-  console.log(res.data);
   return { shows: res.data };
 };
 
